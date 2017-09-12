@@ -12,13 +12,20 @@ public class Main {
     private JButton deliveryButton;
     private JButton takeoutButton;
     private JPanel createCustomer;
+    private JPasswordField nameField;
+    private JTextField addressField;
+    private JTextField cityField;
+    private JTextField stateField;
+    private JTextField zipField;
+    private JTextField phoneField;
+    private JButton createButton;
     private JLabel createCustomerLabel;
     private JLabel nameLabel;
-    private JLabel phoneLabel;
-    private JLabel zipLabel;
-    private JLabel stateLabel;
-    private JLabel cityLabel;
     private JLabel addressLabel;
+    private JLabel cityLabel;
+    private JLabel stateLabel;
+    private JLabel zipLabel;
+    private JLabel phoneLabel;
     private JButton nextButton;
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout)panelContainer.getLayout();
@@ -38,7 +45,20 @@ public class Main {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cl.show(panelContainer, "Card2");
+
+                cl.show(panelContainer, "createCard");
+            }
+        });
+        takeoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelContainer,"null");
+            }
+        });
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelContainer, "takeoutCard");
             }
         });
     }
