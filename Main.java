@@ -9,6 +9,16 @@ public class Main {
     private JPanel takeoutOption;
     private JTextField searchField;
     private JButton searchButton;
+    private JButton deliveryButton;
+    private JButton takeoutButton;
+    private JPanel createCustomer;
+    private JLabel createCustomerLabel;
+    private JLabel nameLabel;
+    private JLabel phoneLabel;
+    private JLabel zipLabel;
+    private JLabel stateLabel;
+    private JLabel cityLabel;
+    private JLabel addressLabel;
     private JButton nextButton;
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout)panelContainer.getLayout();
