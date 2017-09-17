@@ -33,6 +33,8 @@ public class Main {
     private JCheckBox checkBox1;
     private JCheckBox checkBox2;
     private JCheckBox checkBox3;
+    private JPanel Receipt;
+    private JPanel Payment;
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout)panelContainer.getLayout();
 
