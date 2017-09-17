@@ -29,6 +29,10 @@ public class Main {
     private JList list1;
     private JButton nextButton;
     private JButton createCustomerButton;
+    private JPanel Menu;
+    private JCheckBox checkBox1;
+    private JCheckBox checkBox2;
+    private JCheckBox checkBox3;
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout)panelContainer.getLayout();
 
