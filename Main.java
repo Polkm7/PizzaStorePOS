@@ -26,6 +26,7 @@ public class Main {
     private JLabel stateLabel;
     private JLabel zipLabel;
     private JLabel phoneLabel;
+    private JList list1;
     private JButton nextButton;
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout)panelContainer.getLayout();
