@@ -28,6 +28,7 @@ public class Main {
     private JLabel phoneLabel;
     private JList list1;
     private JButton nextButton;
+    private JButton createCustomerButton;
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout)panelContainer.getLayout();
 
@@ -60,6 +61,24 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelContainer, "takeoutCard");
+            }
+        });
+        createCustomerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelContainer, "createCard");
+            }
+        });
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelContainer, "takeoutOption");
+            }
+        });
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }
