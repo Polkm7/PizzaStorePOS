@@ -30,11 +30,20 @@ public class Main {
     private JButton nextButton;
     private JButton createCustomerButton;
     private JPanel Menu;
-    private JCheckBox checkBox1;
-    private JCheckBox checkBox2;
-    private JCheckBox checkBox3;
     private JPanel Receipt;
     private JPanel Payment;
+    private JCheckBox largeCheckBox;
+    private JCheckBox sausageCheckBox;
+    private JCheckBox mediumCheckBox;
+    private JCheckBox pepperoniCheckBox;
+    private JCheckBox chickenCheckBox;
+    private JCheckBox smallCheckBox;
+    private JCheckBox olivesCheckBox;
+    private JCheckBox peppersCheckBox;
+    private JButton addToCartButton;
+    private JButton nextButton1;
+    private JLabel sizeLabel;
+    private JLabel toppingLabel;
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout)panelContainer.getLayout();
 
