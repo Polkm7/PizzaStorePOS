@@ -44,6 +44,8 @@ public class Main {
     private JButton nextButton1;
     private JLabel sizeLabel;
     private JLabel toppingLabel;
+    private JLabel drinkLabel;
+    private JCheckBox sodaCheckBox;
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout)panelContainer.getLayout();
 
