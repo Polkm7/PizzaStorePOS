@@ -53,8 +53,17 @@ public class Main {
     private JTextField totalField1;
     private JCheckBox dietCokeCheckBox;
     private JCheckBox spriteCheckBox;
+    private JTextField cardNumberField;
+    private JTextField nameField2;
+    private JTextField xdateField;
+    private JButton cancelButton;
+    private JLabel cardNumberLabel;
+    private JLabel nameLabel2;
+    private JLabel xdateLabel;
+    private JButton payButton;
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout) panelContainer.getLayout();
+    double total = 0.00;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Gui");
