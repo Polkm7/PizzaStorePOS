@@ -132,6 +132,18 @@ public class Main {
         add1Button.addActionListener(actionListener);
 
 
+        nextButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelContainer, "paymentCard");
+            }
+        });
+        payButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelContainer, "receiptCard");
+            }
+        });
     }
 
     ActionListener actionListener;
