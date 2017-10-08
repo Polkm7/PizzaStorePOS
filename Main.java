@@ -42,6 +42,9 @@ public class Main {
     private JCheckBox peppersCheckBox;
     private JButton addToCartButton;
     private JButton nextButton1;
+    private JCheckBox waterCheckBox;
+    private JCheckBox cokeCheckBox;
+    private JButton resetButton;
     private JLabel sizeLabel;
     private JLabel toppingLabel;
     private JTextField totaltextField;
@@ -61,12 +64,13 @@ public class Main {
     private JPanel PanelContainer;
     private CardLayout cl = (CardLayout) panelContainer.getLayout();
     private double total = 0.00;
-    DefaultListModel receiptModel = new DefaultListModel();
-    JList receiptList = new JList(receiptModel);
-    private JCheckBox waterCheckBox;
-    private JCheckBox cokeCheckBox;
-    private JButton resetButton;
-
+    DefaultListModel receiptModel;
+    JList receiptList;
+    double basePrice;
+    double toppingPrice;
+    double drinkprice;
+    double pizzaCost;
+    String pizzaSize = "";
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Gui");
@@ -80,7 +84,8 @@ public class Main {
 
 
     public Main() {
-
+        receiptModel = new DefaultListModel();
+        receiptList.setModel(receiptModel);
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -129,8 +134,6 @@ public class Main {
         peppersCheckBox.addActionListener(actionListener);
         olivesCheckBox.addActionListener(actionListener);
         addToCartButton.addActionListener(actionListener);
-        cokeCheckBox.addActionListener(actionListener);
-        waterCheckBox.addActionListener(actionListener);
     //    add1Button.addActionListener(actionListener);
 
 
@@ -155,11 +158,7 @@ public class Main {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                double basePrice;
-                double toppingPrice;
-                double drinkprice;
-                double pizzaCost;
-                String pizzaSize = "";
+
                 /* pizza base */
                 basePrice = 0;
                 if (largeCheckBox.isSelected()) {
@@ -191,14 +190,6 @@ public class Main {
 
                     }
                 }
-                /*drink*/
-                drinkprice=0;
-                if (waterCheckBox.isSelected()){
-                    drinkprice= 2;
-                }
-                if (cokeCheckBox.isSelected()){
-                    drinkprice= 3;
-                }
 
                 if (e.getSource() == addToCartButton) {
                     pizzaCost = basePrice + toppingPrice;
@@ -208,17 +199,15 @@ public class Main {
                     total = total+pizzaCost+drinkprice; //adds current pizza to total price
                     totaltextField.setText(Double.toString(total));
 
-                } else {
-                    return;
                 }
 
                 //cbg = new CheckboxGroup();
 
 
                 //reset button
-                if (e.getSource() == resetButton){
-
-                }
+//                if (e.getSource() == resetButton){
+//
+//                }
 
 
                 /*if (e.getSource() == add1Button) {
