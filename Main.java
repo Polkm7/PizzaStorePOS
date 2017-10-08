@@ -45,14 +45,10 @@ public class Main {
     private JLabel sizeLabel;
     private JLabel toppingLabel;
     private JTextField totaltextField;
-    private JPanel Drink;
-    private JCheckBox waterCheckBox;
-    private JCheckBox cokeCheckBox;
+
     private JButton add1Button;
-    private JButton nextButton2;
     private JTextField totalField1;
-    private JCheckBox dietCokeCheckBox;
-    private JCheckBox spriteCheckBox;
+
     private JTextField cardNumberField;
     private JTextField nameField2;
     private JTextField xdateField;
@@ -67,6 +63,9 @@ public class Main {
     private double total = 0.00;
     DefaultListModel receiptModel = new DefaultListModel();
     JList receiptList = new JList(receiptModel);
+    private JCheckBox waterCheckBox;
+    private JCheckBox cokeCheckBox;
+    private JButton resetButton;
 
 
     public static void main(String[] args) {
@@ -113,9 +112,9 @@ public class Main {
                 cl.show(panelContainer, "takeoutOption");
             }
         });
-        searchButton.addActionListener(new ActionListener() {
+        deliveryButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { cl.show(panelContainer, "Menu");
 
             }
         });
@@ -132,9 +131,7 @@ public class Main {
         addToCartButton.addActionListener(actionListener);
         cokeCheckBox.addActionListener(actionListener);
         waterCheckBox.addActionListener(actionListener);
-        dietCokeCheckBox.addActionListener(actionListener);
-        spriteCheckBox.addActionListener(actionListener);
-        add1Button.addActionListener(actionListener);
+    //    add1Button.addActionListener(actionListener);
 
 
         nextButton1.addActionListener(new ActionListener() {
@@ -163,7 +160,7 @@ public class Main {
                 double drinkprice;
                 double pizzaCost;
                 String pizzaSize = "";
-                /* pizza menu */
+                /* pizza base */
                 basePrice = 0;
                 if (largeCheckBox.isSelected()) {
                     basePrice = 16;
@@ -177,7 +174,7 @@ public class Main {
                     pizzaSize = "Small";
 
                 }
-
+                /*pizza topping*/
                 JCheckBox[] toppings;
                 toppings = new JCheckBox[]{
                         pepperoniCheckBox,
@@ -194,32 +191,37 @@ public class Main {
 
                     }
                 }
+                /*drink*/
+                drinkprice=0;
+                if (waterCheckBox.isSelected()){
+                    drinkprice= 2;
+                }
+                if (cokeCheckBox.isSelected()){
+                    drinkprice= 3;
+                }
+
                 if (e.getSource() == addToCartButton) {
                     pizzaCost = basePrice + toppingPrice;
-                    //JOptionPane.showMessageDialog(null, "total price is:" + totalprice);
-                    //System.exit(0);
+
                     receiptList.setModel(receiptModel);
                     receiptModel.addElement(pizzaSize + " " + toppingPrice + " topping pizza: " + pizzaCost);
-                    total = total+pizzaCost; //adds current pizza to total price
+                    total = total+pizzaCost+drinkprice; //adds current pizza to total price
                     totaltextField.setText(Double.toString(total));
-                    //totaltextField.setText(Double.toString(pizzaCost));
+
                 } else {
                     return;
                 }
 
-                /* Drink menu */
-                drinkprice = 0;
-                if (cokeCheckBox.isSelected()) {
-                    drinkprice += 2;
-                } else if (waterCheckBox.isSelected()) {
-                    drinkprice += 2;
-                } else if (dietCokeCheckBox.isSelected()) {
-                    drinkprice += 2;
-                } else if (spriteCheckBox.isSelected()) {
-                    drinkprice += 2.5;
+                //cbg = new CheckboxGroup();
+
+
+                //reset button
+                if (e.getSource() == resetButton){
+
                 }
 
-                if (e.getSource() == add1Button) {
+
+                /*if (e.getSource() == add1Button) {
                     pizzaCost = basePrice + toppingPrice + drinkprice;
                     //JOptionPane.showMessageDialog(null, "total price is:" + totalprice);
                     //System.exit(0);
@@ -231,7 +233,7 @@ public class Main {
                     totalField1.setText(Double.toString(total));
 
 
-                }
+                }*/
 
 
             }
