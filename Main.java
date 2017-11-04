@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Main {
     private JPanel panelContainer;
@@ -12,7 +16,7 @@ public class Main {
     private JButton deliveryButton;
     private JButton takeoutButton;
     private JPanel createCustomer;
-    private JPasswordField nameField;
+    private JTextField nameField;
     private JTextField addressField;
     private JTextField cityField;
     private JTextField stateField;
@@ -71,6 +75,9 @@ public class Main {
     double drinkprice;
     double pizzaCost;
     String pizzaSize = "";
+    public InsertApp insertApp;
+
+
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Gui");
@@ -80,10 +87,13 @@ public class Main {
         frame.setVisible(true);
 
 
+
     }
 
 
     public Main() {
+        insertApp = new InsertApp();
+
         receiptModel = new DefaultListModel();
         receiptList.setModel(receiptModel);
         searchButton.addActionListener(new ActionListener() {
@@ -100,8 +110,20 @@ public class Main {
             }
         });
         createButton.addActionListener(new ActionListener() {
+
+
             @Override
             public void actionPerformed(ActionEvent e) {
+                //String name = nameField.get
+                //insertApp.insert("Adam", "2245586332");
+
+                String name = nameField.getText();
+                String phone = phoneField.getText();
+                String address = addressField.getText();
+                String city = cityField.getText();
+                String state = stateField.getText();
+                String zip = zipField.getText();
+                insertApp.insert(name, phone, address, city, state, zip);
                 cl.show(panelContainer, "takeoutCard");
             }
         });
@@ -110,6 +132,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelContainer, "createCard");
             }
+
         });
         nextButton.addActionListener(new ActionListener() {
             @Override
