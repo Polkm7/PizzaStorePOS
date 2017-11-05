@@ -79,7 +79,9 @@ public class Main {
     double pizzaCost;
     String pizzaSize = "";
     public InsertApp insertApp;
-
+    String customerID;
+    boolean isDrink;
+    int numberOfToppings;
 
 
 
@@ -96,12 +98,15 @@ public class Main {
 
 
     public Main() {
+        System.out.println("Starting Customer ID: " + customerID);
+
         insertApp = new InsertApp();
+        insertApp.getOrderID();
         customerModel = new DefaultListModel();
         customerList.setModel(customerModel);
         receiptModel = new DefaultListModel();
         receiptList.setModel(receiptModel);
-        insertApp.getOrderID();
+        //insertApp.getOrderID();
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -138,6 +143,9 @@ public class Main {
                 String state = stateField.getText();
                 String zip = zipField.getText();
                 insertApp.insert(name, phone, address, city, state, zip);
+                insertApp.setCurrentCustomerID(phone);
+                customerID = phone;
+                System.out.println("Create customer, id: " + customerID);
                 cl.show(panelContainer, "takeoutCard");
             }
         });
@@ -151,8 +159,9 @@ public class Main {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String CustomerID  = insertApp.getCurrentCustomerID();
-                if(CustomerID != null && !CustomerID.isEmpty()){
+                customerID  = insertApp.getCurrentCustomerID();
+                System.out.println("Customer id when hitting next: " + customerID);
+                if(customerID != null && !customerID.isEmpty()){
                     cl.show(panelContainer, "takeoutCard");
                 } else{
                     JOptionPane.showMessageDialog(null, "Not valid customer: " + insertApp.getCurrentCustomerID());
@@ -227,6 +236,13 @@ public class Main {
 
                 };
                 toppingPrice = 0;
+                if (waterCheckBox.isSelected() || cokeCheckBox.isSelected()){
+                    isDrink = true;
+                    drinkprice++;
+                } else {
+                    isDrink = false;
+
+                }
                 for (JCheckBox topping : toppings) {
                     if (topping.isSelected()) {
                         toppingPrice += 1;
@@ -241,6 +257,9 @@ public class Main {
                     receiptModel.addElement(pizzaSize + " " + toppingPrice + " topping pizza: " + pizzaCost);
                     total = total+pizzaCost+drinkprice; //adds current pizza to total price
                     totaltextField.setText(Double.toString(total));
+                    numberOfToppings = (int) toppingPrice;
+
+                    insertApp.addCart(customerID, insertApp.getLastID(), pizzaSize, numberOfToppings , isDrink, total);
 
                 }
 
@@ -259,7 +278,7 @@ public class Main {
                     //System.exit(0);
 
                     //JOptionPane.showMessageDialog(null,"Total is " + total + ". Pizza cost is " + pizzaCost + " .");
-//                    Todo: get the receiptModel and receiptList to display an added element.
+//
                     receiptModel.addElement(pizzaSize + " " + toppingPrice + " topping pizza: " + pizzaCost); //adds pizza to list model but for some reason doest work right now
                     total = total+pizzaCost; //adds current pizza to total price
                     totalField1.setText(Double.toString(total));

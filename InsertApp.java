@@ -10,6 +10,13 @@ public class InsertApp {
         // SQLite connection string
         String url = "jdbc:sqlite:src/pizzaDB.sqlite";
         Connection conn = null;
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
@@ -31,6 +38,25 @@ public class InsertApp {
             pstmt.setString(4, city);
             pstmt.setString(5, state);
             pstmt.setString(6, zip);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+    public void addCart(String customerID, int orderId, String size, int toppings, boolean drink, double cost) {
+        String sql = "INSERT INTO Receipt(customerID, orderId, size, toppings, drink, cost) VALUES(?,?,?,?,?,?)";
+
+        try  {
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, currentCustomerID);
+            pstmt.setInt(2, lastID);
+            pstmt.setString(3, size);
+            pstmt.setInt(4, toppings);
+            pstmt.setBoolean(5, drink);
+            pstmt.setDouble(6, cost);
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -86,15 +112,19 @@ public class InsertApp {
         return "no results";
     }
     public int getOrderID(){
-        PreparedStatement pstmt = null;
-        String sql = "SELECT MAX(orderID) as lastID FROM Receipt";
+        Statement stmt = null;
+        String sql = "SELECT MAX(orderId) as lastID FROM Receipt";
         try {
             Connection conn = connect();
-            pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
+            //pstmt = conn.prepareStatement(sql);
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
-                lastID = rs.getInt("orderID");
+                //lastID = rs.getInt("size");
+                lastID = rs.getInt(1);
                 System.out.println("last Id: " + lastID);
+                lastID++;
                 return lastID;
             }
         } catch (SQLException e) {
@@ -107,6 +137,14 @@ public class InsertApp {
 
     public static void main(String[] args) {
 
+    }
+
+    public int getLastID() {
+        return lastID;
+    }
+
+    public void setLastID(int lastID) {
+        this.lastID = lastID;
     }
 
     public String getCurrentCustomerID() {
