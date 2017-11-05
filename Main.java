@@ -82,6 +82,7 @@ public class Main {
 
 
 
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Gui");
         frame.setContentPane(new Main().panelContainer);
@@ -100,6 +101,7 @@ public class Main {
         customerList.setModel(customerModel);
         receiptModel = new DefaultListModel();
         receiptList.setModel(receiptModel);
+        insertApp.getOrderID();
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

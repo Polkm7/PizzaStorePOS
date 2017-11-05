@@ -1,18 +1,11 @@
 import javax.swing.*;
 import java.sql.*;
 
-/**
- *
- * @author sqlitetutorial.net
- */
-public class InsertApp {
 
+public class InsertApp {
+    int lastID = 0;
     String currentCustomerID = null;
-    /**
-     * Connect to the test.db database
-     *
-     * @return the Connection object
-     */
+
     private Connection connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:src/pizzaDB.sqlite";
@@ -25,11 +18,7 @@ public class InsertApp {
         return conn;
     }
 
-    /**
-     * Insert a new row into the Customer table
-     *
 
-     */
     public void insert(String name, String phone, String address, String city, String state, String zip) {
         String sql = "INSERT INTO Customer(Name, phone, Address, City, State, Zip) VALUES(?,?,?,?,?,?)";
 
@@ -96,12 +85,27 @@ public class InsertApp {
 
         return "no results";
     }
-    /**
-     * @param args the command line arguments
-     */
+    public int getOrderID(){
+        PreparedStatement pstmt = null;
+        String sql = "SELECT MAX(orderID) as lastID FROM Receipt";
+        try {
+            Connection conn = connect();
+            pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                lastID = rs.getInt("orderID");
+                System.out.println("last Id: " + lastID);
+                return lastID;
+            }
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+
+        }
+        return lastID;
+    }
+
     public static void main(String[] args) {
-
-
 
     }
 
