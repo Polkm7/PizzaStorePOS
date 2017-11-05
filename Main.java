@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.scripts.JO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +32,7 @@ public class Main {
     private JLabel stateLabel;
     private JLabel zipLabel;
     private JLabel phoneLabel;
-    private JList list1;
+    private JList customerList;
     private JButton nextButton;
     private JButton createCustomerButton;
     private JPanel Menu;
@@ -69,6 +71,7 @@ public class Main {
     private CardLayout cl = (CardLayout) panelContainer.getLayout();
     private double total = 0.00;
     DefaultListModel receiptModel;
+    DefaultListModel customerModel;
     JList receiptList;
     double basePrice;
     double toppingPrice;
@@ -93,14 +96,23 @@ public class Main {
 
     public Main() {
         insertApp = new InsertApp();
-
+        customerModel = new DefaultListModel();
+        customerList.setModel(customerModel);
         receiptModel = new DefaultListModel();
         receiptList.setModel(receiptModel);
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                customerModel.removeAllElements();
+                try {
 
-                cl.show(panelContainer, "createCard");
+                    customerModel.addElement(insertApp.search(searchField.getText()));
+                    customerList.setSelectedIndex(0);
+                    //insertApp.search("7064328825");
+                }catch (SQLException f) {
+                    System.out.println(f.getMessage());
+                }
+
             }
         });
         takeoutButton.addActionListener(new ActionListener() {
@@ -110,7 +122,7 @@ public class Main {
             }
         });
         createButton.addActionListener(new ActionListener() {
-
+            //adds customer info to database
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -137,7 +149,13 @@ public class Main {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cl.show(panelContainer, "takeoutOption");
+                String CustomerID  = insertApp.getCurrentCustomerID();
+                if(CustomerID != null && !CustomerID.isEmpty()){
+                    cl.show(panelContainer, "takeoutCard");
+                } else{
+                    JOptionPane.showMessageDialog(null, "Not valid customer: " + insertApp.getCurrentCustomerID());
+                }
+
             }
         });
         deliveryButton.addActionListener(new ActionListener() {

@@ -1,7 +1,5 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import javax.swing.*;
+import java.sql.*;
 
 /**
  *
@@ -9,6 +7,7 @@ import java.sql.SQLException;
  */
 public class InsertApp {
 
+    String currentCustomerID = null;
     /**
      * Connect to the test.db database
      *
@@ -34,8 +33,9 @@ public class InsertApp {
     public void insert(String name, String phone, String address, String city, String state, String zip) {
         String sql = "INSERT INTO Customer(Name, phone, Address, City, State, Zip) VALUES(?,?,?,?,?,?)";
 
-        try (Connection conn = this.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try  {
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, name);
             pstmt.setString(2, phone);
             pstmt.setString(3, address);
@@ -49,6 +49,53 @@ public class InsertApp {
         }
     }
 
+
+    public String search(String phoneNumber) throws SQLException{
+
+        PreparedStatement preparedStatement = null;
+
+        String sql = "SELECT phone, Name, Address, City, State, Zip FROM Customer WHERE phone = ?";
+
+        try {
+            Connection conn = connect();
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,phoneNumber);
+
+            // execute select SQL statement
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+
+                String name = rs.getString("Name");
+                String phone = rs.getString("phone");
+                String Address = rs.getString("Address");
+                String City = rs.getString("City");
+                String State = rs.getString("State");
+                String Zip = rs.getString("Zip");
+
+                System.out.println(name + ", " + phone + ", " + Address + ", " + City + ", " + State + ", " + Zip);
+                currentCustomerID = phone;
+                return (phone + ", " + name + ", " + Address + ", " + City + ", " + State + ", " + Zip);
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+
+        } finally {
+
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+
+            if (connect() != null) {
+                connect().close();
+            }
+
+        }
+
+        return "no results";
+    }
     /**
      * @param args the command line arguments
      */
@@ -58,4 +105,11 @@ public class InsertApp {
 
     }
 
+    public String getCurrentCustomerID() {
+        return currentCustomerID;
+    }
+
+    public void setCurrentCustomerID(String currentCustomerID) {
+        this.currentCustomerID = currentCustomerID;
+    }
 }

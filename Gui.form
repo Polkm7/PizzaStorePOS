@@ -75,13 +75,16 @@
               <text value="Search"/>
             </properties>
           </component>
-          <component id="9e6cf" class="javax.swing.JList" binding="list1" default-binding="true">
+          <component id="9e6cf" class="javax.swing.JList" binding="customerList">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="1" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <enabled value="true"/>
+              <selectionMode value="0"/>
+            </properties>
           </component>
           <component id="5b09d" class="javax.swing.JButton" binding="nextButton" default-binding="true">
             <constraints>
