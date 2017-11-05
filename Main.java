@@ -101,7 +101,11 @@ public class Main {
         System.out.println("Starting Customer ID: " + customerID);
 
         insertApp = new InsertApp();
-        insertApp.getOrderID();
+        try {
+            insertApp.getOrderID();
+        } catch (SQLException i ){
+            System.out.println(i.getMessage());
+        }
         customerModel = new DefaultListModel();
         customerList.setModel(customerModel);
         receiptModel = new DefaultListModel();
@@ -142,7 +146,11 @@ public class Main {
                 String city = cityField.getText();
                 String state = stateField.getText();
                 String zip = zipField.getText();
-                insertApp.insert(name, phone, address, city, state, zip);
+                try {
+                    insertApp.insert(name, phone, address, city, state, zip);
+                } catch (SQLException h){
+                    System.out.println(h.getMessage());
+                }
                 insertApp.setCurrentCustomerID(phone);
                 customerID = phone;
                 System.out.println("Create customer, id: " + customerID);
@@ -258,8 +266,11 @@ public class Main {
                     total = total+pizzaCost+drinkprice; //adds current pizza to total price
                     totaltextField.setText(Double.toString(total));
                     numberOfToppings = (int) toppingPrice;
-
-                    insertApp.addCart(customerID, insertApp.getLastID(), pizzaSize, numberOfToppings , isDrink, total);
+                    try {
+                        insertApp.addCart(customerID, insertApp.getLastID(), pizzaSize, numberOfToppings, isDrink, total);
+                    } catch (SQLException g){
+                        System.out.println(g.getMessage());
+                    }
 
                 }
 

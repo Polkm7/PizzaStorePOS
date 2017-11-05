@@ -5,11 +5,13 @@ import java.sql.*;
 public class InsertApp {
     int lastID = 0;
     String currentCustomerID = null;
-
+    String url = "jdbc:sqlite:src/pizzaDB.sqlite";
+    Connection conn = null;
+    Statement stmt = null;
+    PreparedStatement pstmt = null;
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:src/pizzaDB.sqlite";
-        Connection conn = null;
+
         if (conn != null) {
             try {
                 conn.close();
@@ -22,16 +24,17 @@ public class InsertApp {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return conn;
+
+            return conn;
     }
 
 
-    public void insert(String name, String phone, String address, String city, String state, String zip) {
+    public void insert(String name, String phone, String address, String city, String state, String zip) throws SQLException{
         String sql = "INSERT INTO Customer(Name, phone, Address, City, State, Zip) VALUES(?,?,?,?,?,?)";
 
         try  {
-            Connection conn = this.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            conn = this.connect();
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, name);
             pstmt.setString(2, phone);
             pstmt.setString(3, address);
@@ -45,19 +48,18 @@ public class InsertApp {
         }
 
     }
-    public void addCart(String customerID, int orderId, String size, int toppings, boolean drink, double cost) {
+    public void addCart(String customerID, int orderId, String size, int toppings, boolean drink, double cost) throws SQLException {
         String sql = "INSERT INTO Receipt(customerID, orderId, size, toppings, drink, cost) VALUES(?,?,?,?,?,?)";
 
         try  {
-            Connection conn = this.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, currentCustomerID);
             pstmt.setInt(2, lastID);
             pstmt.setString(3, size);
             pstmt.setInt(4, toppings);
             pstmt.setBoolean(5, drink);
             pstmt.setDouble(6, cost);
-
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -67,17 +69,17 @@ public class InsertApp {
 
     public String search(String phoneNumber) throws SQLException{
 
-        PreparedStatement preparedStatement = null;
+
 
         String sql = "SELECT phone, Name, Address, City, State, Zip FROM Customer WHERE phone = ?";
 
         try {
-            Connection conn = connect();
-            preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1,phoneNumber);
+            conn = connect();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,phoneNumber);
 
             // execute select SQL statement
-            ResultSet rs = preparedStatement.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
 
@@ -97,22 +99,12 @@ public class InsertApp {
 
             System.out.println(e.getMessage());
 
-        } finally {
-
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-
-            if (connect() != null) {
-                connect().close();
-            }
-
         }
 
         return "no results";
     }
-    public int getOrderID(){
-        Statement stmt = null;
+    public int getOrderID() throws SQLException{
+
         String sql = "SELECT MAX(orderId) as lastID FROM Receipt";
         try {
             Connection conn = connect();
