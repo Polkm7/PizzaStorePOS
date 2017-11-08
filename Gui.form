@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Main">
   <grid id="da3fd" binding="panelContainer" layout-manager="CardLayout" hgap="0" vgap="0" show="32b6b">
     <constraints>
-      <xy x="20" y="20" width="799" height="424"/>
+      <xy x="20" y="20" width="838" height="424"/>
     </constraints>
     <properties>
       <enabled value="true"/>
@@ -306,14 +306,6 @@
               <text value="Total"/>
             </properties>
           </component>
-          <component id="3e057" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Menu"/>
-            </properties>
-          </component>
           <component id="c5c1d" class="javax.swing.JLabel" binding="toppingLabel">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
@@ -394,6 +386,46 @@
             </constraints>
             <properties>
               <text value="Reset"/>
+            </properties>
+          </component>
+          <component id="77ec1" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Specialty Crust"/>
+            </properties>
+          </component>
+          <component id="e6d0e" class="javax.swing.JCheckBox" binding="pepperCheckBox" default-binding="true">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Pepper"/>
+            </properties>
+          </component>
+          <component id="a573" class="javax.swing.JCheckBox" binding="cheeseCheckBox" default-binding="true">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Cheese"/>
+            </properties>
+          </component>
+          <component id="caa85" class="javax.swing.JCheckBox" binding="pretzelCheckBox" default-binding="true">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Pretzel"/>
+            </properties>
+          </component>
+          <component id="3e057" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Menu"/>
             </properties>
           </component>
         </children>
@@ -632,6 +664,12 @@
       <member id="7ee39"/>
       <member id="f37f7"/>
       <member id="34efd"/>
+    </group>
+    <group name="crustGroup">
+      <member id="e6d0e"/>
+      <member id="e6d0e"/>
+      <member id="a573"/>
+      <member id="caa85"/>
     </group>
   </buttonGroups>
 </form>

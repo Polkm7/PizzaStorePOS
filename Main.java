@@ -86,6 +86,9 @@ public class Main {
     private JButton cancelButton3;
     private JLabel checkNumberLabel;
     private JLabel checkAmountLabel;
+    private JCheckBox pepperCheckBox;
+    private JCheckBox pretzelCheckBox;
+    private JCheckBox cheeseCheckBox;
     double basePrice;
     double toppingPrice;
     double drinkprice;
