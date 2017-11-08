@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Main">
   <grid id="da3fd" binding="panelContainer" layout-manager="CardLayout" hgap="0" vgap="0" show="32b6b">
     <constraints>
-      <xy x="20" y="20" width="631" height="424"/>
+      <xy x="20" y="20" width="799" height="424"/>
     </constraints>
     <properties>
       <enabled value="true"/>
@@ -426,88 +426,205 @@
           </component>
         </children>
       </grid>
-      <grid id="9cc10" binding="Payment" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <tabbedpane id="fbb0e" binding="PaymentScreen">
         <constraints>
           <card name="paymentCard"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="b2970" class="javax.swing.JLabel">
+          <grid id="3a5f7" binding="cashPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Payment Info"/>
-            </properties>
-          </component>
-          <component id="143d9" class="javax.swing.JLabel" binding="cardNumberLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Card Number"/>
-            </properties>
-          </component>
-          <component id="48477" class="javax.swing.JTextField" binding="cardNumberField">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
+              <tabbedpane title="Cash"/>
             </constraints>
             <properties/>
-          </component>
-          <component id="61ca6" class="javax.swing.JLabel" binding="nameLabel2">
+            <border type="none"/>
+            <children>
+              <component id="f9c54" class="javax.swing.JTextField" binding="cashAmountField">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="556a6" class="javax.swing.JLabel" binding="cashAmountLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Amount"/>
+                </properties>
+              </component>
+              <component id="bcf6d" class="javax.swing.JButton" binding="cashSubmitButton">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Submit"/>
+                </properties>
+              </component>
+              <component id="2acc4" class="javax.swing.JButton" binding="cancelButton2">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Cancel"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="9cc10" binding="creditPanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Name"/>
-            </properties>
-          </component>
-          <component id="88eaf" class="javax.swing.JTextField" binding="nameField2">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
+              <tabbedpane title="Credit Card"/>
             </constraints>
             <properties/>
-          </component>
-          <component id="7c9d0" class="javax.swing.JLabel" binding="xdateLabel">
+            <border type="none"/>
+            <children>
+              <component id="b2970" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Payment Info"/>
+                </properties>
+              </component>
+              <component id="143d9" class="javax.swing.JLabel" binding="cardNumberLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Card Number"/>
+                </properties>
+              </component>
+              <component id="48477" class="javax.swing.JTextField" binding="cardNumberField">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="61ca6" class="javax.swing.JLabel" binding="nameLabel2">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Name"/>
+                </properties>
+              </component>
+              <component id="88eaf" class="javax.swing.JTextField" binding="nameField2">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="7c9d0" class="javax.swing.JLabel" binding="xdateLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Expiration Date"/>
+                </properties>
+              </component>
+              <component id="9a96" class="javax.swing.JTextField" binding="xdateField">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="1049c" class="javax.swing.JButton" binding="cancelButton">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Cancel"/>
+                </properties>
+              </component>
+              <component id="8815a" class="javax.swing.JButton" binding="payButton">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Submit"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="e141" binding="checkPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Expiration Date"/>
-            </properties>
-          </component>
-          <component id="9a96" class="javax.swing.JTextField" binding="xdateField">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
+              <tabbedpane title="Check"/>
             </constraints>
             <properties/>
-          </component>
-          <component id="1049c" class="javax.swing.JButton" binding="cancelButton">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Cancel"/>
-            </properties>
-          </component>
-          <component id="8815a" class="javax.swing.JButton" binding="payButton">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Submit"/>
-            </properties>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="456d" class="javax.swing.JLabel" binding="checkNumberLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Check Number"/>
+                </properties>
+              </component>
+              <component id="5ac6f" class="javax.swing.JTextField" binding="checkAmountField">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="dfc32" class="javax.swing.JLabel" binding="checkAmountLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Check Amount"/>
+                </properties>
+              </component>
+              <component id="a0468" class="javax.swing.JButton" binding="cancelButton3">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Cancel"/>
+                </properties>
+              </component>
+              <component id="afb00" class="javax.swing.JButton" binding="CheckSubmitButton">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Submit"/>
+                </properties>
+              </component>
+              <component id="28e8" class="javax.swing.JTextField" binding="checkNumberField">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+            </children>
+          </grid>
         </children>
-      </grid>
+      </tabbedpane>
+      <component id="c563f" class="javax.swing.JLabel">
+        <constraints>
+          <card name="Card1"/>
+        </constraints>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
     </children>
   </grid>
   <buttonGroups>

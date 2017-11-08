@@ -37,7 +37,7 @@ public class Main {
     private JButton createCustomerButton;
     private JPanel Menu;
     private JPanel Receipt;
-    private JPanel Payment;
+    private JPanel creditPanel;
     private JCheckBox largeCheckBox;
     private JCheckBox sausageCheckBox;
     private JCheckBox mediumCheckBox;
@@ -73,6 +73,19 @@ public class Main {
     DefaultListModel receiptModel;
     DefaultListModel customerModel;
     JList receiptList;
+    private JTabbedPane PaymentScreen;
+    private JTextField cashAmountField;
+    private JLabel cashAmountLabel;
+    private JButton cashSubmitButton;
+    private JButton cancelButton2;
+    private JPanel checkPanel;
+    private JTextField checkNumberField;
+    private JTextField checkAmountField;
+    private JPanel cashPanel;
+    private JButton CheckSubmitButton;
+    private JButton cancelButton3;
+    private JLabel checkNumberLabel;
+    private JLabel checkAmountLabel;
     double basePrice;
     double toppingPrice;
     double drinkprice;
@@ -206,6 +219,33 @@ public class Main {
         payButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    insertApp.paymentType("Credit", insertApp.getLastID());
+                } catch (SQLException i) {
+                    System.out.println(i.getMessage());
+                }
+                cl.show(panelContainer, "receiptCard");
+            }
+        });
+        CheckSubmitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    insertApp.paymentType("Check", insertApp.getLastID());
+                } catch (SQLException i) {
+                    System.out.println(i.getMessage());
+                }
+                cl.show(panelContainer, "receiptCard");
+            }
+        });
+        cashSubmitButton.addActionListener(new ActionListener()  {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    insertApp.paymentType("Cash", insertApp.getLastID());
+                } catch (SQLException i) {
+                    System.out.println(i.getMessage());
+                }
                 cl.show(panelContainer, "receiptCard");
             }
         });

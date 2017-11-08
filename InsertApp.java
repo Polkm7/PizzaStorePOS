@@ -65,7 +65,20 @@ public class InsertApp {
             System.out.println(e.getMessage());
         }
     }
+    public void paymentType(String paymentType, int orderId) throws SQLException{
+        String sql = "update Receipt set paymentType = ? where orderId = ?";
 
+        try  {
+            conn = this.connect();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, paymentType);
+            pstmt.setInt(2, orderId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
     public String search(String phoneNumber) throws SQLException{
 
