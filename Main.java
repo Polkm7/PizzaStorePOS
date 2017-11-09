@@ -1,6 +1,7 @@
 import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
+import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -89,6 +90,8 @@ public class Main {
     private JCheckBox pepperCheckBox;
     private JCheckBox pretzelCheckBox;
     private JCheckBox cheeseCheckBox;
+    private JButton newOrderButton;
+    private JButton finishButton;
     double basePrice;
     double toppingPrice;
     double drinkprice;
@@ -107,7 +110,6 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
 
 
     }
@@ -152,25 +154,31 @@ public class Main {
             //adds customer info to database
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                //String name = nameField.get
-                //insertApp.insert("Adam", "2245586332");
+                public void actionPerformed(ActionEvent e) {
+                if (phoneField.getText().length() == 0) {
+                    phoneField.requestFocusInWindow();
+                } else
+                {
 
-                String name = nameField.getText();
-                String phone = phoneField.getText();
-                String address = addressField.getText();
-                String city = cityField.getText();
-                String state = stateField.getText();
-                String zip = zipField.getText();
-                try {
-                    insertApp.insert(name, phone, address, city, state, zip);
-                } catch (SQLException h){
-                    System.out.println(h.getMessage());
+                    //String name = nameField.get
+                    //insertApp.insert("Adam", "2245586332");
+
+                    String name = nameField.getText();
+                    String phone = phoneField.getText();
+                    String address = addressField.getText();
+                    String city = cityField.getText();
+                    String state = stateField.getText();
+                    String zip = zipField.getText();
+                    try {
+                        insertApp.insert(name, phone, address, city, state, zip);
+                    } catch (SQLException h) {
+                        System.out.println(h.getMessage());
+                    }
+                    insertApp.setCurrentCustomerID(phone);
+                    customerID = phone;
+                    System.out.println("Create customer, id: " + customerID);
+                    cl.show(panelContainer, "takeoutCard");
                 }
-                insertApp.setCurrentCustomerID(phone);
-                customerID = phone;
-                System.out.println("Create customer, id: " + customerID);
-                cl.show(panelContainer, "takeoutCard");
             }
         });
         createCustomerButton.addActionListener(new ActionListener() {
@@ -252,6 +260,63 @@ public class Main {
                 cl.show(panelContainer, "receiptCard");
             }
         });
+        finishButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+      
+
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              if(e.getSource() == resetButton){
+
+                  largeCheckBox.setSelected(false);
+                  mediumCheckBox.setSelected(false);
+                  smallCheckBox.setSelected(false);
+                  pepperoniCheckBox.setSelected(false);
+                  chickenCheckBox.setSelected(false);
+                  peppersCheckBox.setSelected(false);
+                  sausageCheckBox.setSelected(false);
+                  olivesCheckBox.setSelected(false);
+                  peppersCheckBox.setSelected(false);
+                  pretzelCheckBox.setSelected(false);
+                  cheeseCheckBox.setSelected(false);
+                  waterCheckBox.setSelected(false);
+                  cokeCheckBox.setSelected(false);
+                  totaltextField.setText(null);
+                  ((DefaultListModel)receiptList.getModel()).clear();
+
+              }
+            }
+        });
+        newOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelContainer, "searchCard");
+                largeCheckBox.setSelected(false);
+                mediumCheckBox.setSelected(false);
+                smallCheckBox.setSelected(false);
+                pepperoniCheckBox.setSelected(false);
+                chickenCheckBox.setSelected(false);
+                peppersCheckBox.setSelected(false);
+                sausageCheckBox.setSelected(false);
+                olivesCheckBox.setSelected(false);
+                peppersCheckBox.setSelected(false);
+                pretzelCheckBox.setSelected(false);
+                cheeseCheckBox.setSelected(false);
+                waterCheckBox.setSelected(false);
+                cokeCheckBox.setSelected(false);
+                totaltextField.setText(null);
+                searchField.setText(null);
+                ((DefaultListModel)receiptList.getModel()).clear();
+                ((DefaultListModel)customerList.getModel()).clear();
+
+
+            }
+        });
     }
 
     ActionListener actionListener;
@@ -303,12 +368,13 @@ public class Main {
 
                 if (e.getSource() == addToCartButton) {
                     pizzaCost = basePrice + toppingPrice;
-
+                    numberOfToppings = (int) toppingPrice;
                     receiptList.setModel(receiptModel);
-                    receiptModel.addElement(pizzaSize + " " + toppingPrice + " topping pizza: " + pizzaCost);
+
+                    receiptModel.addElement("Customer ID:" + customerID + "  " +  "Pizza size: "+ pizzaSize  + "  " + "Number of toppings:"  + numberOfToppings  + " " + " Total cost:" + pizzaCost);
                     total = total+pizzaCost+drinkprice; //adds current pizza to total price
                     totaltextField.setText(Double.toString(total));
-                    numberOfToppings = (int) toppingPrice;
+
                     try {
                         insertApp.addCart(customerID, insertApp.getLastID(), pizzaSize, numberOfToppings, isDrink, total);
                     } catch (SQLException g){
@@ -317,28 +383,6 @@ public class Main {
 
                 }
 
-                //cbg = new CheckboxGroup();
-
-
-                //reset button
-//                if (e.getSource() == resetButton){
-//
-//                }
-
-
-                /*if (e.getSource() == add1Button) {
-                    pizzaCost = basePrice + toppingPrice + drinkprice;
-                    //JOptionPane.showMessageDialog(null, "total price is:" + totalprice);
-                    //System.exit(0);
-
-                    //JOptionPane.showMessageDialog(null,"Total is " + total + ". Pizza cost is " + pizzaCost + " .");
-//
-                    receiptModel.addElement(pizzaSize + " " + toppingPrice + " topping pizza: " + pizzaCost); //adds pizza to list model but for some reason doest work right now
-                    total = total+pizzaCost; //adds current pizza to total price
-                    totalField1.setText(Double.toString(total));
-
-
-                }*/
 
 
             }
