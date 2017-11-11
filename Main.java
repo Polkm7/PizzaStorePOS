@@ -101,7 +101,8 @@ public class Main {
     String customerID;
     boolean isDrink;
     int numberOfToppings;
-
+    ButtonGroup sizeGroup;
+    ButtonGroup crustGroup;
 
 
     public static void main(String[] args) {
@@ -287,6 +288,9 @@ public class Main {
                   waterCheckBox.setSelected(false);
                   cokeCheckBox.setSelected(false);
                   totaltextField.setText(null);
+                  sizeGroup.clearSelection();
+                  crustGroup.clearSelection();
+
                   ((DefaultListModel)receiptList.getModel()).clear();
 
               }

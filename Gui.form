@@ -678,12 +678,12 @@
     </children>
   </grid>
   <buttonGroups>
-    <group name="sizeGroup">
+    <group name="sizeGroup" bound="true">
       <member id="7ee39"/>
       <member id="f37f7"/>
       <member id="34efd"/>
     </group>
-    <group name="crustGroup">
+    <group name="crustGroup" bound="true">
       <member id="e6d0e"/>
       <member id="e6d0e"/>
       <member id="a573"/>
